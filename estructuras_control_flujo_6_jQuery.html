@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Ejemplo de uso de bucles anidados for en Javascript" />
+    <meta name="keywords" content="HTML,JavaScript,jQuery,Implatación de Aplicaciones Web" />
+    <meta name="author" content="Rafael García Cabrera" />
+    <title>Tablas de multiplicar con dos bucles for anidados (jQuery)</title>
+    <!-- 
+      Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+      tomando como fuente el libro:
+      Guía práctica AJAX - Francisco Charte Ojeda
+    -->
+        <style>
+        p {
+            float: left;
+            margin: 1em;
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript (jQuery)</h1>
+    <h2>Estructuras repetitivas: Bucles for anidados</h2>
+    <h3>Tablas de multiplicar con dos bucles for anidados</h3>
+    <div id="tablas_multiplicar">
+      <script>
+      // El bucle externo controla cada tabla de multiplicar y
+      // el bucle interno controla las multiplicaciones dentro de cada tabla de multiplicar
+
+      var tabla='';
+      for (Tabla=1; Tabla<=10; Tabla++) {
+        tabla = '<p>' + '<strong>Tabla del ' + Tabla + '</strong><br />';
+        for(Numero=1; Numero<=10; Numero++) {
+          Producto=Tabla*Numero;
+          Texto = Tabla + 'x' + Numero +"=" + Producto;
+          tabla+=Texto + '<br />';
+        }
+        tabla+='</p>\n';    
+        $("#tablas_multiplicar").append(tabla); // http://api.jquery.com/append/    
+      }
+      </script>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ejemplo de uso de estructuras condicionales en JavaScript" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,jQuery,Implatación de Aplicaciones Web" />
+    <meta name="author" content="Rafael García Cabrera" />
+    <title>JavaScript (jQuery): Estructuras condicionales (II)</title>
+    <!-- 
+     Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+     a partir de JavaScript tutorial http://www.w3schools.com/js
+    -->
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="estructuras_control_flujo_jQuery.js"></script>
+    <script>
+        $(function() {
+            // http://api.jquery.com/radio-selector/
+            // http://api.jquery.com/checked-selector/   
+            // Poner a Sí el radio buttom 
+            $('input:radio[name="checkHora"]')[0].checked = true;
+
+            // Activar/Desactivar el evento change para #campo_hora
+            $('input:radio[name="checkHora"]').change(function() {
+                if ($('input:radio[name="checkHora"]:checked').val() === 'si') {
+                    $("#campo_hora").change(validarHora);
+                } else {
+                    $("#campo_hora").off("change"); // http://api.jquery.com/off/
+                }
+            });
+        });
+
+    </script>
+
+    <style>
+        #fecha_hora {
+            border: thin solid black;
+            margin: 10px;
+            padding: 1em;
+        }
+        
+        #saludar {
+            width: 200px;
+            height: 100px;
+            border: medium dashed black;
+            margin: 10px;
+            padding: 1em;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript (jQuery)</h1>
+    <h2>Estructuras condicionales (II)</h2>
+    <ul>
+        <li>if simple</li>
+        <li>condicional if...else</li>
+        <li>if anidados</li>
+        <li>sentencia switch</li>
+    </ul>
+
+    <!-- 
+    Se ha eliminado del input onchange="validar_hora()" para que sea posible 
+	introducir valores erróneos para probar el default del switch
+-->
+    <p>Introduzca una hora (0-24) <input type="text" id="campo_hora" /> Validar Hora (switch):
+        <input type="radio" name="checkHora" value="si" />Sí
+        <input type="radio" name="checkHora" value="no" />No
+    </p>
+
+    <button id="if_simple">Probar (if simple)</button>
+
+    <button id="if_else">Probar (if...else)</button>
+
+    <button id="if_anidados">Probar (if anidados)</button>
+
+    <button id="switch">Probar (switch)</button>
+
+    <div id="fecha_hora"></div>
+
+    <div id="saludar"></div>
+
+</body>
+
+</html>

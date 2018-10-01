@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ejemplo de uso de switch y arrays en JavaScript" />
+    <meta name="keywords" content="HTML,CSS,XML,JavaScript,jQuery,Implatación de Aplicaciones Web" />
+    <meta name="author" content="Rafael García Cabrera" />
+    <title>Día de la Semana</title>
+    <style>
+        #fecha_leida {
+            border: medium ridge green;
+            margin: 10px;
+            padding: 1em;
+            position: absolute;
+            left: 500px;
+            top: 100px;
+            display: none;
+        }
+        
+        #fecha_switch {
+            width: 250px;
+            border: thick outset blue;
+            margin: 10px;
+            padding: 1em;
+        }
+        
+        #fecha_array {
+            width: 250px;
+            border: thick inset aqua;
+            margin: 10px;
+            padding: 1em;
+        }
+
+    </style>
+    <!-- 
+      Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+      tomando como fuentes:
+      JavaScript tutorial http://www.w3schools.com/js
+      Introducción a Javascript http://www.librosweb.es/javascript
+      http://imbuzu.wordpress.com/2010/02/19/validando-fechas-de-forma-sencilla-en-javascript/
+    -->
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript (jQuery)</h1>
+    <h2>Estructuras condicionales (switch)</h2>
+
+    <div>día: <input type="text" id="dia" size="2" /> mes: <input type="text" id="mes" size="2" /> año: <input type="text" id="year" size="4" />
+    </div>
+
+    <div id="fecha_leida"></div>
+    <p></p>
+
+    <div><button id="bt-switch">Fecha con switch</button></div>
+    <div id="fecha_switch"></div>
+
+    <p>Se obtiene el mismo resultado con otra función cuyo código usa arrays (sin recurrir a la sentencia switch)</p>
+
+    <div><button id="bt-array">Fecha con arrays</button></div>
+    <div id="fecha_array"></div>
+    <script src="jquery-3.2.1.min.js"></script>
+    <script>
+        // validar una fecha obtenida a partir de día, mes y año
+        function fecha_valida() {
+            // variables locales a esta función
+            var dia = $("#dia").val();
+            var mes = $("#mes").val();
+            var year = $("#year").val();
+
+            // variable global fecha (sin var)
+            fecha = new Date(year, mes - 1, dia); //mes empieza en cero Enero = 0
+
+            // mostrar la fecha leída, sea válida o no
+            $("#fecha_leida").html(fecha);
+            // propiedad CSS display
+            $("#fecha_leida").css("display", "inline");
+
+            // mejor getFullYear en lugar de getYear porque ésta última podría devolver años transcurridos desde 1900
+            if (!(!fecha || fecha.getFullYear() == year && fecha.getMonth() == mes - 1 && fecha.getDate() == dia)) {
+                return false;
+            }
+            // La fecha es válida (no hace falta else)
+            return true;
+        }
+
+        // Devuelve el día de la semana en español a partir de un número del 0 al 6
+        function dime_dia(dia) {
+            var d;
+            switch (dia) {
+                case 0:
+                    d = "Domingo";
+                    break;
+                case 1:
+                    d = "Lunes";
+                    break;
+                case 2:
+                    d = "Martes";
+                    break;
+                case 3:
+                    d = "Miércoles";
+                    break;
+                case 4:
+                    d = "Jueves";
+                    break;
+                case 5:
+                    d = "Viernes";
+                    break;
+                case 6:
+                    d = "Sábado";
+                    break;
+                default:
+                    d = "Error"; //los días válidos son del 0 al 6
+            }
+            return d;
+        }
+
+        // Devuelve el mes en español a partir de un número del 0 al 11
+        function dime_mes(mes) {
+            var m;
+            switch (mes) {
+                case 0:
+                    m = "Enero";
+                    break;
+                case 1:
+                    m = "Febrero";
+                    break;
+                case 2:
+                    m = "Marzo";
+                    break;
+                case 3:
+                    m = "Abril";
+                    break;
+                case 4:
+                    m = "Mayo";
+                    break;
+                case 5:
+                    m = "Junio";
+                    break;
+                case 6:
+                    m = "Julio";
+                    break;
+                case 7:
+                    m = "Agosto";
+                    break;
+                case 8:
+                    m = "Septiembre";
+                    break;
+                case 9:
+                    m = "Octubre";
+                    break;
+                case 10:
+                    m = "Noviembre";
+                    break;
+                case 11:
+                    m = "Diciembre";
+                    break;
+                default:
+                    m = "Error"; // los meses válidos son del 0 al 11	  
+            }
+            return m;
+        }
+
+        // Utilizando dos funciones dime_dia y dime_mes como ejemplos de sentencia switch
+        function muestra_fecha_switch() {
+            var fecha_mensaje;
+
+            if (fecha_valida()) {
+                fecha_mensaje = dime_dia(fecha.getDay()) + ", " + fecha.getDate() + " de " + dime_mes(fecha.getMonth()) + " de " + fecha.getFullYear();
+            } else {
+                fecha_mensaje = "La fecha no es válida";
+            }
+            $("#fecha_switch").html(fecha_mensaje);
+        }
+        
+        // Utilizando Arrays no se necesitan las funciones dime_dia y dime_mes con sentencia switch
+        // se necesita menos código en este caso
+        function muestra_fecha_array() {
+            var fecha_mensaje;
+            // array para los días de la semana (índices del 0 al 6)
+            var semana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            // array para los meses del año ((índices del 0 al 11)
+            var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            if (fecha_valida()) {
+                fecha_mensaje = semana[fecha.getDay()] + ", " + fecha.getDate() + " de " + meses[fecha.getMonth()] + " de " + fecha.getFullYear();
+            } else {
+                fecha_mensaje = "La fecha no es válida";
+            }
+            $("#fecha_array").html(fecha_mensaje);
+        }
+        
+        // http://api.jquery.com/click/
+
+        $("#bt-switch").click(muestra_fecha_switch);
+        $("#bt-array").click(muestra_fecha_array);
+    </script>
+
+</body>
+
+</html>

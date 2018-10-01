@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Ejemplo de uso de bucle for en Javascript" />
+    <meta name="keywords" content="HTML,JavaScript,jQuery,Implatación de Aplicaciones Web" />
+    <meta name="author" content="Rafael García Cabrera" />
+    <title>Listado de años bisiestos (bucle for)</title>
+    <!-- 
+     Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+     tomando como fuente el libro:
+     Guía práctica AJAX - Francisco Charte Ojeda
+    -->
+    <script src="jquery-3.2.1.min.js"></script>
+
+    <script>
+        // Comprueba si el año (year) pasado como argumento es o no bisiesto
+        // devuelve true o false
+        function EsBisiesto(year) {
+            if ((year % 4 == 0) &&
+                ((year % 100 != 0) ||
+                    (year % 400 == 0)))
+                return true;
+            else
+                return false;
+        }
+
+        // La misma función se puede codificar más breve
+        // devuelve true o false usando un solo return
+        /*
+        function EsBisiesto(year) {
+          return ((year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0)))
+        }
+        */
+        $(function() {
+            // Bucle for para recorrer un rango de años
+            for (year = 1900; year <= 2200; year++)
+                // comprobando si son o no bisiestos
+                if (EsBisiesto(year))
+                    $("body").append('<strong>' + year + '</strong>, '); // http://api.jquery.com/append/
+                else
+                    $("body").append(year + ', ');
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript (jQuery)</h1>
+    <h2>Estructuras repetitivas: Bucle for</h2>
+    <h3>Listado de años bisiestos desde 1900 hasta 2200</h3>
+</body>
+
+</html>

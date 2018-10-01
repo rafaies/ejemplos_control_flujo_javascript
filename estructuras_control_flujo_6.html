@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ejemplo de uso de bucles anidados for en Javascript">
+    <meta name="keywords" content="HTML,JavaScript, Implatación de Aplicaciones Web">
+    <meta name="author" content="Rafael García Cabrera">
+    <title>Tablas de multiplicar con dos bucles for anidados</title>
+<!-- 
+ Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+ tomando como fuente el libro:
+ Guía práctica AJAX - Francisco Charte Ojeda
+-->
+    <style>
+        p {
+            float: left;
+            margin: 1em;
+            font-family: monospace;
+            white-space: pre;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript</h1>
+    <h2>Estructuras repetitivas: Bucles for anidados</h2>
+    <h3>Tablas de multiplicar con dos bucles for anidados</h3>
+
+    <script>
+        document.write('<div id="tablas_multiplicar">');
+        // El bucle externo controla cada tabla de multiplicar y
+        // el bucle interno controla las multiplicaciones dentro de cada tabla de multiplicar
+
+        for (Tabla = 1; Tabla <= 10; Tabla++) {
+            document.write('<p>' + '<strong>Tabla del ' + Tabla + '</strong><br />');
+            for (Numero = 1; Numero <= 10; Numero++) {
+                Producto = Tabla * Numero;
+                Texto = Tabla + 'x' + Numero + "=" + Producto;
+                document.write(Texto + '<br />');
+            }
+            document.write('</p>\n');
+        }
+        document.write('</div>');
+    </script>
+
+</body>
+
+</html>

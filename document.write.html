@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ejemplo document.write</title>
+    <!-- 
+    Ejemplo a partir de: http://www.w3schools.com/js/js_howto.asp 
+
+    ¡OjO!: Utilice document.write() sólo para escribir directamente en el documento.
+
+    Si se ejecuta document.write después de que el documento se haya terminado de cargar, 
+    se sobrescribirá la página HTML entera.
+    -->
+    <script>
+        function myFunction() {
+            document.write("<h1>¡Vaya!, se machacó la página entera</h1>");
+            // JavaScript Window Location: https://www.w3schools.com/js/js_window_location.asp
+            document.write("<p><button onclick='window.location.href=window.location.href'>Recargar</button></p>");
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Probando a escribir con document.write()</h1>
+    <p>OjO --> se sobrescribirá la página HTML entera.</p>
+    <button onclick="myFunction()">Probar</button>
+</body>
+
+</html>

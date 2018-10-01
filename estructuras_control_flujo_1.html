@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Ejemplo de uso de estructuras condicionales en JavaScript" />
+    <meta name="keywords" content="HTML,JavaScript,Implatación de Aplicaciones Web" />
+    <meta name="author" content="Rafael García Cabrera" />
+    <title>JavaScript: Estructuras condicionales (I)</title>
+    <!-- 
+     Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+     a partir de JavaScript tutorial http://www.w3schools.com/js
+    -->
+    <script src="estructuras_control_flujo.js"></script>
+    <style>
+        #fecha_hora {
+            border: thin solid black;
+            margin: 10px;
+            padding: 1em;
+        }
+        
+        #saludar {
+            width: 200px;
+            height: 100px;
+            border: medium dashed black;
+            margin: 10px;
+            padding: 1em;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript</h1>
+    <h2>Estructuras condicionales (I)</h2>
+    <ul>
+        <li>if simple</li>
+        <li>condicional if...else</li>
+        <li>if anidados</li>
+    </ul>
+
+    <p>Introduzca una hora (0-24) <input type="text" id="campo_hora" onchange="validarHora()" /></p>
+
+
+    <button onclick="saludo1()">Probar (if simple)</button>
+
+    <button onclick="saludo2()">Probar (if...else)</button>
+
+    <button onclick="saludo3()">Probar (if anidados)</button>
+
+    <div id="fecha_hora"></div>
+
+    <div id="saludar"></div>
+
+</body>
+
+</html>

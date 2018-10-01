@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Ejemplo de uso de bucles while y do...while en Javascript" />
+    <meta name="keywords" content="HTML,CSS,JavaScript,jQuery,Implatación de Aplicaciones Web" />
+    <meta name="author" content="Rafael García Cabrera" />
+    <title>Listado de años bisiestos (bucles while y do...while)</title>
+    <style>
+        #lista_bisiestos_while {
+            width: 400px;
+            border: medium ridge blue;
+            padding: 1em;
+            float: left;
+        }
+
+        #lista_bisiestos_dowhile {
+            width: 400px;
+            border: medium outset red;
+            padding: 1em;
+            float: right;
+        }
+
+        #botones {
+            margin-bottom: 60px;
+        }
+
+        #boton_while {
+            float: left;
+            color: blue;
+        }
+
+        #boton_dowhile {
+            float: right;
+            color: red;
+        }
+
+    </style>
+    <!-- 
+  Ejemplo realizado para Implatación de Apliaciones Web de 2º ASIR IES Virgen del Carmen de Jaén
+  tomando como fuente el libro:
+  Guía práctica AJAX - Francisco Charte Ojeda
+-->
+</head>
+
+<body>
+    <h1>Control de flujo JavaScript (jQuery)</h1>
+    <h2>Estructuras repetitivas: Bucles while y do...while</h2>
+    <h3>Listado de años bisiestos desde INICIO hasta FIN</h3>
+
+
+    <div>Año de INICIO: <input type="text" id="a_inicial" size="4" /> Año de FIN: <input type="text" id="a_final" size="4" />
+    </div>
+    <p></p>
+
+    <div id="botones">
+        <button id="boton_while">Años Bisiestos con while</button>
+        <button id="boton_dowhile">Años Bisiestos con do...while</button>
+    </div>
+    <p></p>
+    <div id="lista_bisiestos_while"></div>
+    <div id="lista_bisiestos_dowhile"></div>
+    <script src="jquery-3.2.1.min.js"></script>
+
+    <script>
+        // Comprueba si el año de inicio es menor que el de fin
+        // y que los valores estén entre 1900 y 2200
+        function validoInicioFin(i, f) {
+            if (i <= f && i >= 1900 && f <= 2200)
+                return true;
+            else
+                return false;
+            // resumido
+            // return i<=f && i>=1900 && f<=2200;
+        }
+
+        // Comprueba si el año (year) pasado como argumento es o no bisiesto
+        // devuelve true o false
+        function EsBisiesto(year) {
+            return (year % 4 == 0) && ((year % 100 != 0) || (year % 400 == 0));
+        }
+
+        /*  DIFERENCIA entre WHILE y DO WHILE
+           ===================================
+           Para comprobar la diferencia de funcionamiento de los bucles while y do...while
+           se propone no realizar la comprobación de validez de los valores inicio y fin
+           para ello sustituya  !validoInicioFin(inicio, fin)  por false
+           tanto en la función bisiestos_while() como en bisiestos_dowhile() 
+           Una vez hecho esos dos cambios pruebe la página con valores de inicio superiores a los de fin
+           Observe que la condición del while impide que se entre al bucle
+           mientras que el bucle do...while escribe el número de inicio 
+           porque la comprobación del bucle está a la salida del mismo.
+        */
+        //http://api.jquery.com/html/
+        //http://api.jquery.com/append/    
+        // listado de años bisiestos usando bucle while
+        function bisiestos_while() {
+            var inicio = Number($("#a_inicial").val());
+            var fin = Number($("#a_final").val());
+            var x = $("#lista_bisiestos_while");
+
+            if (!validoInicioFin(inicio, fin)) //PRUEBE a sustituir esta línea por if(false)
+                x.html("Los valores de INICIO y FIN deben estar comprendidos entre 1900 y 2200");
+            else {
+                x.html(""); //borrar el contenido del div
+                // Bucle while para obtener números desde inicio hasta fin
+                while (inicio <= fin) {
+                    if (EsBisiesto(inicio))
+                        x.append('<strong>' + inicio + '</strong>, ');
+                    else
+                        x.append(inicio + ', ');
+                    inicio++;
+                }
+            }
+        }
+
+        // listado de años bisiestos usando bucle do...while
+        function bisiestos_dowhile() {
+            var inicio = Number($("#a_inicial").val());
+            var fin = Number($("#a_final").val());
+            var x = $("#lista_bisiestos_dowhile");
+
+            if (!validoInicioFin(inicio, fin)) //PRUEBE a sustituir esta línea por if(false)
+                x.html("Los valores de INICIO y FIN deben estar comprendidos entre 1900 y 2200");
+            else {
+                x.html(""); //borrar el contenido del div
+                // Bucle do...while para obtener números desde inicio hasta fin
+                do {
+                    if (EsBisiesto(inicio))
+                        x.append('<strong>' + inicio + '</strong>, ');
+                    else
+                        x.append(inicio + ', ');
+                    inicio++;
+                } while (inicio <= fin);
+            }
+        }
+
+        // http://api.jquery.com/click/
+
+        $("#boton_while").click(bisiestos_while);
+        $("#boton_dowhile").click(bisiestos_dowhile);
+
+    </script>
+
+</body>
+
+</html>
